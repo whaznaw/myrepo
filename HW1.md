@@ -153,6 +153,25 @@ WI_interesting_new[, 3] <- sapply(WI_interesting_new[, 3], as.factor)
 WI_interesting_new[, 4:6] <- sapply(WI_interesting_new[, c(4:6)], 
                                     as.numeric, na.rm = TRUE)
 
+
+hist(WI_interesting_new$DECK_COND_058)
+```
+
+![](HW1_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+``` r
+hist(WI_interesting_new$SUPERSTRUCTURE_COND_059)
+```
+
+![](HW1_files/figure-gfm/unnamed-chunk-2-2.png)<!-- -->
+
+``` r
+hist(WI_interesting_new$SUBSTRUCTURE_COND_060)
+```
+
+![](HW1_files/figure-gfm/unnamed-chunk-2-3.png)<!-- -->
+
+``` r
 lm_new <- lm(DECK_COND_058 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_new)
 lm_new2 <-lm(SUPERSTRUCTURE_COND_059 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_new)
 lm_new3 <-lm(SUBSTRUCTURE_COND_060 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_new)
@@ -393,8 +412,24 @@ WI_interesting_old[, 3] <- sapply(WI_interesting_old[, 3], as.factor)
 WI_interesting_old[, 4:6] <- sapply(WI_interesting_old[, c(4:6)], as.numeric, na.rm = TRUE)
 
 
+hist(WI_interesting_old$DECK_COND_058)
+```
 
+![](HW1_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
+``` r
+hist(WI_interesting_old$SUPERSTRUCTURE_COND_059)
+```
+
+![](HW1_files/figure-gfm/unnamed-chunk-3-2.png)<!-- -->
+
+``` r
+hist(WI_interesting_old$SUBSTRUCTURE_COND_060)
+```
+
+![](HW1_files/figure-gfm/unnamed-chunk-3-3.png)<!-- -->
+
+``` r
 lm_old <- lm(DECK_COND_058 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_old)
 lm_old2 <-lm(SUPERSTRUCTURE_COND_059 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_old)
 lm_old3 <-lm(SUBSTRUCTURE_COND_060 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_old)
