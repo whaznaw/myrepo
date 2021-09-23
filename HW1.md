@@ -283,7 +283,8 @@ WI_interesting_new <- na_if(WI_interesting_new, "N")
 
 WI_interesting_new[, 3] <- sapply(WI_interesting_new[, 3], as.factor)
 
-WI_interesting_new[, 4:6] <- sapply(WI_interesting_new[, c(4:6)], as.numeric, na.rm = TRUE)
+WI_interesting_new[, 4:6] <- sapply(WI_interesting_new[, c(4:6)], 
+                                    as.numeric, na.rm = TRUE)
 
 WI_interesting_new <- arrange(WI_interesting_new,ROUTE_PREFIX_005B)
 
@@ -395,7 +396,12 @@ Y2K = filter(WI_interesting_old,YEAR_BUILT_027 == "1999")
 deck_condition_in_2000 <- mean(Y2K$DECK_COND_058, na.rm=TRUE)
 
 
-cat("The mean deck condition for bridges built in 1999 in the year 2000 was" , deck_condition_in_2000, "and the mean deck condition for bridges that were built in the year 1999 in 2020 was", deck_condition_in_2020)
+cat("The mean deck condition for bridges built in 1999 in the year 2000 was" ,
+    deck_condition_in_2000, "and the mean deck 
+    condition for bridges that were built in 
+    the year 1999 in 2020 was", deck_condition_in_2020)
 ```
 
-    ## The mean deck condition for bridges built in 1999 in the year 2000 was 8.407895 and the mean deck condition for bridges that were built in the year 1999 in 2020 was 6.95122
+    ## The mean deck condition for bridges built in 1999 in the year 2000 was 8.407895 and the mean deck 
+    ##     condition for bridges that were built in 
+    ##     the year 1999 in 2020 was 6.95122
