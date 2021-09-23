@@ -21,7 +21,7 @@ library(ggplot2)
 
 ```{r}
 WI_Bridges_new <- fread("https://www.fhwa.dot.gov/bridge/nbi/2020/delimited/WI20.txt")
-head(WI_Bridges_new)
+#head(WI_Bridges_new)
 
 #colnames(WI_Bridges_new)
 
@@ -30,7 +30,7 @@ dataFrame_WI <- WI_Bridges_new %>%
   as_tibble()
 
 
-WI_interesting_new <- dataFrame_WI[,c(1:2,4 ,67:69, 27)]
+WI_interesting_new <- dataFrame_WI[,c(1:2,4 ,67:69, 27, 111)]
 head(WI_interesting_new)
 
 WI_interesting_new <- na_if(WI_interesting_new, "N")
@@ -40,14 +40,17 @@ WI_interesting_new[, 3] <- sapply(WI_interesting_new[, 3], as.factor)
 WI_interesting_new[, 4:6] <- sapply(WI_interesting_new[, c(4:6)], 
                                     as.numeric, na.rm = TRUE)
 
-WI_interesting_new <- arrange(WI_interesting_new,ROUTE_PREFIX_005B)
+lm_new <- lm(DECK_COND_058 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_new)
+lm_new2 <-lm(SUPERSTRUCTURE_COND_059 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_new)
+lm_new3 <-lm(SUBSTRUCTURE_COND_060 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_new)
 
-
-
-
+summary(lm_new)
+summary(lm_new2)
+summary(lm_new3)
 
 # Filtered based on type of road
 
+# WI_interesting_new <- arrange(WI_interesting_new,ROUTE_PREFIX_005B)
 # Interstate_highway <- filter(WI_interesting_new, ROUTE_PREFIX_005B == "1")
 # U.S._numbered_highway<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "2")
 # State_highway<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "3")
@@ -81,7 +84,7 @@ dataFrame_WI_old <- WI_Bridges_old %>%
   as_tibble()
 
 
-WI_interesting_old <- dataFrame_WI_old[,c(1:2,4 ,67:69, 27)]
+WI_interesting_old <- dataFrame_WI_old[,c(1:2,4 ,67:69, 27, 111)]
 head(WI_interesting_old)
 
 
@@ -95,9 +98,17 @@ WI_interesting_old[, 4:6] <- sapply(WI_interesting_old[, c(4:6)], as.numeric, na
 
 
 
+lm_old <- lm(DECK_COND_058 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_old)
+lm_old2 <-lm(SUPERSTRUCTURE_COND_059 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_old)
+lm_old3 <-lm(SUBSTRUCTURE_COND_060 ~ PERCENT_ADT_TRUCK_109, data = WI_interesting_old)
+
+summary(lm_old)
+summary(lm_old2)
+summary(lm_old3)
 
 
-WI_interesting_old <- arrange(WI_interesting_old,ROUTE_PREFIX_005B)
+
+
 
 
 
@@ -106,6 +117,7 @@ WI_interesting_old <- arrange(WI_interesting_old,ROUTE_PREFIX_005B)
 
 # Filtered based on type of road
 # 
+# WI_interesting_old <- arrange(WI_interesting_old,ROUTE_PREFIX_005B)
 # Interstate_highway_old <- filter(WI_interesting_old, ROUTE_PREFIX_005B == "1")
 # U.S._numbered_highway_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "2")
 # State_highway_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "3")
