@@ -10,7 +10,7 @@ html\_document github\_document
 3)  do str(data) and some plot to show
 data
 
-<!-- end list -->
+### I did Two years of Wisconsin Bridges so this is 2020
 
 ``` r
 WI_Bridges_new <- fread("https://www.fhwa.dot.gov/bridge/nbi/2020/delimited/WI20.txt")
@@ -273,6 +273,8 @@ summary(lm_new3)
 # mean(State_lands_road$DECK_COND_058,na.rm=TRUE)
 # mean(Other$DECK_COND_058,na.rm=TRUE)
 ```
+
+### Here is the older data from 2000
 
 ``` r
 WI_Bridges_old <- fread("https://www.fhwa.dot.gov/bridge/nbi/2000/delimited/WI00.txt")

@@ -12,6 +12,7 @@ github_document
 2) include link to github
 3) do str(data) and some plot to show data
 
+
 ```{r include=FALSE}
 library(readr)
 library(dplyr)
@@ -20,7 +21,7 @@ library(ggplot2)
 ```
 
 
-
+### I did Two years of Wisconsin Bridges so this is 2020
 ```{r}
 WI_Bridges_new <- fread("https://www.fhwa.dot.gov/bridge/nbi/2020/delimited/WI20.txt")
 str(WI_Bridges_new)
@@ -83,7 +84,7 @@ summary(lm_new3)
 ```
 
 
-
+### Here is the older data from 2000
 ```{r}
 WI_Bridges_old <- fread("https://www.fhwa.dot.gov/bridge/nbi/2000/delimited/WI00.txt")
 str(WI_Bridges_old)
