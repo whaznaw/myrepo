@@ -1,0 +1,148 @@
+---
+title: "HW1"
+author: "William Haznaw"
+date: "9/21/2021"
+output: github_document
+---
+
+
+1) compile git and HTML 
+2) include link to github
+3) do str(data) and some plot to show data
+
+```{r include=FALSE}
+library(readr)
+library(dplyr)
+library(data.table)
+library(ggplot2)
+```
+
+
+
+```{r}
+WI_Bridges_new <- fread("https://www.fhwa.dot.gov/bridge/nbi/2020/delimited/WI20.txt")
+head(WI_Bridges_new)
+
+#colnames(WI_Bridges_new)
+
+
+dataFrame_WI <- WI_Bridges_new %>% 
+  as_tibble()
+
+
+WI_interesting_new <- dataFrame_WI[,c(1:2,4 ,67:69, 27)]
+head(WI_interesting_new)
+
+WI_interesting_new <- na_if(WI_interesting_new, "N")
+
+WI_interesting_new[, 3] <- sapply(WI_interesting_new[, 3], as.factor)
+
+WI_interesting_new[, 4:6] <- sapply(WI_interesting_new[, c(4:6)], as.numeric, na.rm = TRUE)
+
+WI_interesting_new <- arrange(WI_interesting_new,ROUTE_PREFIX_005B)
+
+
+
+
+
+# Filtered based on type of road
+
+# Interstate_highway <- filter(WI_interesting_new, ROUTE_PREFIX_005B == "1")
+# U.S._numbered_highway<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "2")
+# State_highway<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "3")
+# County_highway<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "4")
+# City_street<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "5")
+# Federal_lands_road<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "6")
+# State_lands_road<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "7")
+# Other<- filter(WI_interesting_new, ROUTE_PREFIX_005B == "8")
+
+
+# means of conditions by road
+
+# mean(Interstate_highway$DECK_COND_058,na.rm=TRUE)
+# mean(U.S._numbered_highway$DECK_COND_058,na.rm=TRUE)
+# mean(State_highway$DECK_COND_058,na.rm=TRUE)
+# mean(County_highway$DECK_COND_058,na.rm=TRUE)
+# mean(City_street$DECK_COND_058,na.rm=TRUE)
+# mean(Federal_lands_road$DECK_COND_058,na.rm=TRUE)
+# mean(State_lands_road$DECK_COND_058,na.rm=TRUE)
+# mean(Other$DECK_COND_058,na.rm=TRUE)
+
+```
+
+
+
+```{r}
+WI_Bridges_old <- fread("https://www.fhwa.dot.gov/bridge/nbi/2000/delimited/WI00.txt")
+
+
+dataFrame_WI_old <- WI_Bridges_old %>% 
+  as_tibble()
+
+
+WI_interesting_old <- dataFrame_WI_old[,c(1:2,4 ,67:69, 27)]
+head(WI_interesting_old)
+
+
+
+WI_interesting_old <- na_if(WI_interesting_old, "N")
+
+WI_interesting_old[, 3] <- sapply(WI_interesting_old[, 3], as.factor)
+
+WI_interesting_old[, 4:6] <- sapply(WI_interesting_old[, c(4:6)], as.numeric, na.rm = TRUE)
+
+
+
+
+
+
+WI_interesting_old <- arrange(WI_interesting_old,ROUTE_PREFIX_005B)
+
+
+
+
+
+
+# Filtered based on type of road
+# 
+# Interstate_highway_old <- filter(WI_interesting_old, ROUTE_PREFIX_005B == "1")
+# U.S._numbered_highway_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "2")
+# State_highway_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "3")
+# County_highway_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "4")
+# City_street_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "5")
+# Federal_lands_road_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "6")
+# State_lands_road_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "7")
+# Other_old<- filter(WI_interesting_old, ROUTE_PREFIX_005B == "8")
+
+
+
+# means of conditions by road
+
+# mean(Interstate_highway_old$DECK_COND_058,na.rm=TRUE)
+# mean(U.S._numbered_highway_old$DECK_COND_058,na.rm=TRUE)
+# mean(State_highway_old$DECK_COND_058,na.rm=TRUE)
+# mean(County_highway_old$DECK_COND_058,na.rm=TRUE)
+# mean(City_street_old$DECK_COND_058,na.rm=TRUE)
+# mean(Federal_lands_road_old$DECK_COND_058,na.rm=TRUE)
+# mean(State_lands_road_old$DECK_COND_058,na.rm=TRUE)
+# mean(Other_old$DECK_COND_058,na.rm=TRUE)
+
+```
+
+```{r}
+
+Y2K_new <- filter(WI_interesting_new,YEAR_BUILT_027 == "1999")
+
+deck_condition_in_2020 <- mean(Y2K_new$DECK_COND_058, na.rm=TRUE)
+
+
+
+Y2K = filter(WI_interesting_old,YEAR_BUILT_027 == "1999")
+
+deck_condition_in_2000 <- mean(Y2K$DECK_COND_058, na.rm=TRUE)
+
+```
+
+
+
+
