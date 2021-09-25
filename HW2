@@ -1,0 +1,12 @@
+library(ggplot2)
+library(dplyr)
+library(nycflights13)
+library(tidyverse)
+
+head(flights)
+
+na_flights <- filter(flights,is.na(dep_time ))
+
+head(na_flights)
+
+nrow(na_flights)
