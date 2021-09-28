@@ -1,0 +1,80 @@
+---
+title: "HW2"
+author: "William Haznaw"
+date: "9/21/2021"
+output: html_document
+---
+
+```{r}
+
+library(dplyr)
+
+# install.packages("nycflights13")
+library(nycflights13)
+library(ggplot2)
+```
+
+
+
+1. Find all flights that:
+
+    Had an arrival delay of two or more hours
+
+    Flew to Houston (IAH or HOU)
+    
+    Were operated by United, American, or Delta
+    
+    Departed in summer (July, August, and September)
+    
+    Arrived more than two hours late, but didn’t leave late
+    
+    Were delayed by at least an hour, but made up over 30 minutes in flight
+    
+    Departed between midnight and 6am (inclusive)
+    
+    
+    
+#### 1.1 
+```{r}
+filter(flights, arr_delay >= 120)
+
+```
+
+
+#### 1.4
+
+```{r}
+filter(flights, dest == "IAH" | dest == "HOU")
+```
+
+#### 1.6
+
+```{r}
+filter(flights, 
+       dep_delay >= 60, 
+       dep_delay - arr_delay > 30 )
+```
+
+
+
+3. How many flights have a missing dep_time? What other variables are missing? What might these rows represent?
+
+```{r}
+filter(flights, is.na(dep_time))
+```
+
+
+Cancelled Flights.
+
+
+
+Currently dep_time and sched_dep_time are convenient to look at, but hard to compute with because they’re not really continuous numbers. Convert them to a more convenient representation of number of minutes since midnight.
+
+```{r}
+mutate(flights_sml,
+       good_time = 
+)
+
+```
+
+
