@@ -79,7 +79,7 @@ flights <-flights %>%
     mutate(dep_minutes_since_midnight = (dep_time %/%100)*60 + (dep_time%%100),
            arr_minutes_since_midnight = (arr_time %/%100)*60 + (arr_time%%100)) 
 
-v
+
 flights %>% 
     select(dep_minutes_since_midnight,arr_minutes_since_midnight)
 
